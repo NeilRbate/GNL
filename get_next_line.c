@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:18:59 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/14 13:34:02 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/15 08:43:46 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,14 @@ char	*get_next_line(int fd)
 		while (s[i] != '\n' && s[i])
 			i++;
 		stock = malloc(sizeof(char) * i + 1);
-		stock[i--] = '\0';
+		if (i > 0)
+			stock[i--] = '\0';
 		while (i >= 0)
 		{
 			stock[i] = s[i];
 			i--;
 		}
-		f = s;
 		s = ft_strdup((s + (ft_strlen(stock) + 1)));
-		if (s == 0)
-		{
-			free(f);
-			return (0);
-		}
-		free(f);
 		return (stock);
 	}
 	return (stock);
