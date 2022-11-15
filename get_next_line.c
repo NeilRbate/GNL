@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:18:59 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/15 14:59:31 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:23:17 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,28 @@ char	*ft_cut(char *s)
 	char	*ret;
 
 	i = 0;
-	while (s[i] != '\n' && s[i])
-		i++;
-	ret = malloc(sizeof(char) * i);
-	ret[i] = '\0';
-	i--;
-	while (i >= 0)
+	if (s[0] != '\n')
 	{
-		ret[i] = s[i];
+		while (s[i] != '\n' && s[i])
+			i++;
+		ret = malloc(sizeof(char) * i);
+		if (ret == 0)
+			return (0);
+		ret[i] = '\0';
 		i--;
+		while (i >= 0)
+		{
+			ret[i] = s[i];
+			i--;
+		}
+	}
+	else
+	{
+		ret = malloc(sizeof(char) * 2);
+		if (ret == 0)
+			return (0);
+		ret[0] = '\n';
+		ret[1] = '\0';
 	}
 	return (ret);
 }
@@ -44,12 +57,14 @@ char	*ft_read(int fd)
 		return (0);
 	if (n != 0)
 	{
-		ft_bzero(s, BUFFER_SIZE);
+		ft_bzero(s, BUFFER_SIZE + 1);
 		while (n != 0)
 		{
 			n = read(fd, s, BUFFER_SIZE);
 			stock = ft_strjoin(ret, s);
-			ft_bzero(s, BUFFER_SIZE);
+			if (stock == 0)
+				return (free(ret), NULL);
+			ft_bzero(s, BUFFER_SIZE + 1);
 			if (n != 0)
 				ret = stock;
 		}
@@ -72,11 +87,14 @@ char	*get_next_line(int fd)
 	if (s[i] != '\0')
 	{
 		line = ft_cut(s);
-		while (s[i] != '\n' && s[i])
+		if (s[i] != '\n')
+		{
+			while (s[i] != '\n' && s[i])
+				i++;
+		}
 			i++;
-		i++;
 		s += i;
 	return (line);
 	}
-	return (0);
+	return (NULL);
 }
