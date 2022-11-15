@@ -6,11 +6,26 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:21:05 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/15 09:17:55 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:34:13 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*stock;
+
+	i = 0;
+	stock = (unsigned char *)s;
+	while (i < n)
+	{
+		*stock = 0;
+		stock++;
+		i++;
+	}
+}
 
 size_t	ft_strlen(const char *s)
 {
@@ -56,7 +71,7 @@ char	*ft_strdup(const char *s1)
 	return (ret);
 }
 
-char	*ft_strjoin(char *s1, const char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		len_t;
 	int		i;
@@ -79,5 +94,5 @@ char	*ft_strjoin(char *s1, const char *s2)
 	while (s2[j])
 		ret[i++] = s2[j++];
 	ret[i] = '\0';
-	return (ret);
+	return (free(s1), ret);
 }

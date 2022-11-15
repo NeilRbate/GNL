@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:18:59 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/15 09:53:14 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:59:31 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,25 @@ char	*ft_read(int fd)
 {
 	char	s[BUFFER_SIZE + 1];
 	char	*ret;
+	char	*stock;
 	int		n;
 
 	n = read(fd, s, BUFFER_SIZE);
-	if (n < 0)
-		return (0);
 	ret = ft_strdup(s);
-	while (n)
+	if (ret == 0)
+		return (0);
+	if (n != 0)
 	{
-		n = read(fd, s, BUFFER_SIZE);
-		s[n] = '\0';
-		ret = ft_strjoin(ret, s);
+		ft_bzero(s, BUFFER_SIZE);
+		while (n != 0)
+		{
+			n = read(fd, s, BUFFER_SIZE);
+			stock = ft_strjoin(ret, s);
+			ft_bzero(s, BUFFER_SIZE);
+			if (n != 0)
+				ret = stock;
+		}
+		return (stock);
 	}
 	return (ret);
 }
@@ -57,14 +65,10 @@ char	*get_next_line(int fd)
 	int			i;
 
 	i = 0;
-	if (fd < 0)
+	if (fd < 0 || read(fd,0,0) < 0)
 		return (0);
 	if (s == 0)
-	{
 		s = ft_read(fd);
-		if (s <= 0)
-			return (0);
-	}
 	if (s[i] != '\0')
 	{
 		line = ft_cut(s);

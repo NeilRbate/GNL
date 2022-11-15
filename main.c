@@ -11,7 +11,9 @@ int main(void)
 	{
 		printf("line -> \n |%s|\n", s);
 		s = get_next_line(n);
+
 	}
+	close(n);
 
 	return (0);
 }
