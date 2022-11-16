@@ -9,10 +9,10 @@ int main(void)
 	char *s = get_next_line(n);
 	while (s != 0)
 	{
-		printf("line -> \n |%s|\n", s);
+		printf("%s", s);
 		s = get_next_line(n);
 	}
-	printf("line -> \n |%s|\n", s);
+	printf("%s", s);
 	close(n);
 
 	return (0);
