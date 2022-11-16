@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:21:22 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/15 14:25:45 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/16 08:44:53 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
+#  define BUFFER_SIZE 10
 # endif
 
 char	*get_next_line(int fd);

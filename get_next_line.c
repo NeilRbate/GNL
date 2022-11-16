@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:18:59 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/15 15:23:17 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/16 08:43:57 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,9 @@ char	*ft_cut(char *s)
 		ret = malloc(sizeof(char) * i);
 		if (ret == 0)
 			return (0);
-		ret[i] = '\0';
-		i--;
+		ret[i--] = '\0';
 		while (i >= 0)
-		{
-			ret[i] = s[i];
-			i--;
-		}
+			ret[i] = s[i--];
 	}
 	else
 	{
@@ -80,7 +76,7 @@ char	*get_next_line(int fd)
 	int			i;
 
 	i = 0;
-	if (fd < 0 || read(fd,0,0) < 0)
+	if (fd < 0 || read(fd, 0, 0) < 0)
 		return (0);
 	if (s == 0)
 		s = ft_read(fd);
@@ -94,7 +90,7 @@ char	*get_next_line(int fd)
 		}
 			i++;
 		s += i;
-	return (line);
+		return (line);
 	}
 	return (NULL);
 }
