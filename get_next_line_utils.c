@@ -6,25 +6,36 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:21:05 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/16 08:55:02 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:00:36 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strdup(char *s1)
 {
-	size_t			i;
-	unsigned char	*stock;
+	char	*ret;
+
+	ret = malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (!ret)
+		return (0);
+	ft_strlcpy(ret, s1, ft_strlen(s1) + 1);
+	free(s1);
+	return (ret);
+}
+
+int	ft_isnl(char *s)
+{
+	int	i;
 
 	i = 0;
-	stock = (unsigned char *)s;
-	while (i < n)
+	while (s[i])
 	{
-		*stock = 0;
-		stock++;
+		if (s[i] == '\n')
+			return (i);
 		i++;
 	}
+	return (-1);
 }
 
 size_t	ft_strlen(const char *s)
@@ -60,17 +71,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (ft_strlen(src));
 }
 
-char	*ft_strdup(const char *s1)
-{
-	char	*ret;
-
-	ret = malloc(sizeof(char) * ft_strlen(s1) + 1);
-	if (!ret)
-		return (0);
-	ft_strlcpy(ret, s1, ft_strlen(s1) + 1);
-	return (ret);
-}
-
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		len_t;
@@ -94,5 +94,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		ret[i++] = s2[j++];
 	ret[i] = '\0';
-	return (free(s1), ret);
+	return (free(s2), ret);
 }

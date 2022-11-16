@@ -13,6 +13,7 @@ int main(void)
 		s = get_next_line(n);
 	}
 	printf("%s", s);
+	system("leaks a.out");
 	close(n);
 
 	return (0);
