@@ -10,10 +10,11 @@ int main(void)
 	while (s != 0)
 	{
 		printf("%s", s);
+		free(s);
 		s = get_next_line(n);
 	}
 	printf("%s", s);
-	system("leaks a.out");
+	free(s);
 	close(n);
 
 	return (0);

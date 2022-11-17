@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:18:59 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/16 18:00:54 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/17 13:23:52 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,16 @@ char	*ft_cut(char *s)
 	char		*ret;
 
 	i = 0;
-	if (s[0] != '\n')
-	{
-		while (s[i] != '\n' && s[i])
-			i++;
-		if (s[i] == '\n')
-			i++;
-		ret = malloc(sizeof(char) * i + 1);
-		if (ret == 0)
-			return (0);
-		ret[i] = '\0';
-		ft_strlcpy(ret, s, i + 1);
-	}
-	if (s[0] == '\n')
-	{
-		ret = malloc(sizeof(char) * 2);
-		if (ret == 0)
-			return (0);
-		ret[0] = '\n';
-		ret[1] = '\0';
-	}
+	while (s[i] != '\n' && s[i])
+		i++;
+	if (s[i] == '\n')
+		i++;
+	i++;
+	ret = malloc(i + 1);
+	if (ret == 0)
+		return (0);
+	ret[i] = '\0';
+	ft_strlcpy(ret, s, i + 1);
 	return (ret);
 }
 
@@ -45,23 +35,22 @@ char	*ft_read(int fd)
 {
 	char	*buff;
 	char	*ret;
-	char	*stock;
-	int	n;
+	int		n;
 
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buff = malloc(BUFFER_SIZE + 1);
 	if (buff == 0)
 		return (0);
 	buff[BUFFER_SIZE] = '\0';
-	stock = buff;
 	n = read(fd, buff, BUFFER_SIZE);
 	ret = buff;
 	while (ft_isnl(ret) < 0 && n != 0)
 	{
-		buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		buff = malloc(BUFFER_SIZE + 1);
 		n = read(fd, buff, BUFFER_SIZE);
+		if (n < BUFFER_SIZE)
+			buff[n] = '\0';
 		buff[BUFFER_SIZE] = '\0';
-		stock = ret;
-		ret = ft_strjoin(stock, buff);
+		ret = ft_strjoin(ret, buff);
 		if (ret == 0)
 			return (0);
 	}
@@ -71,20 +60,18 @@ char	*ft_read(int fd)
 char	*get_next_line(int fd)
 {
 	static char	*s;
-	char		*stock;
 	char		*line;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	if (fd < 0 || read(fd, 0, 0) < 0)
 		return (0);
-	if (s == 0)
+	if (j++ == 0)
 		s = ft_read(fd);
 	else
-	{
-		stock = ft_read(fd);
-		s = ft_strjoin(s, stock);
-	}
+		s = ft_strjoin(s, ft_read(fd));
 	if (s[i] != '\0')
 	{
 		line = ft_cut(s);
