@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:18:59 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/17 18:10:30 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:29:28 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || read(fd, 0, 0) < 0)
 		return (0);
 	s = ft_read(fd, s);
+	if (s == 0)
+		return (0);
 	if (s[i] != '\0')
 	{
 		line = ft_cut(s);

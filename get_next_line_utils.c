@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:21:05 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/17 18:06:53 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:31:26 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int		len_t;
 	int		i;
 	int		j;
-	char	*ret;
+	char		*ret;
 
 	i = 0;
 	j = 0;
@@ -88,8 +87,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	if (s1 == 0 || s2 == 0)
 		return (0);
-	len_t = (ft_strlen(s1) + ft_strlen(s2));
-	ret = malloc(len_t + 1);
+	ret = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (ret == 0)
 		return (0);
 	while (s1[i])
