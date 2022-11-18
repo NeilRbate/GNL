@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:21:05 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/18 08:48:33 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/18 11:41:26 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
-	char		*ret;
+	char	*ret;
 
 	i = 0;
 	j = 0;
@@ -99,6 +99,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		ret[i++] = s2[j++];
 	ret[i] = '\0';
-	free(s1);
-	return (ret);
+	return (free(s1), ret);
 }

@@ -6,16 +6,15 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:18:59 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/18 09:26:32 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/18 11:36:27 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
 char	*ft_cut(char *s)
 {
-	int		i;
+	int			i;
 	char		*ret;
 
 	i = 0;
@@ -34,7 +33,7 @@ char	*ft_cut(char *s)
 char	*ft_read(int fd, char *s)
 {
 	char	*buff;
-	int	n;
+	int		n;
 
 	buff = malloc(BUFFER_SIZE + 1);
 	if (buff == 0)
@@ -51,7 +50,7 @@ char	*ft_read(int fd, char *s)
 			buff[n] = '\0';
 		s = ft_strjoin(s, buff);
 		if (s == 0)
-			return (free(buff),NULL);
+			return (free(buff), NULL);
 	}
 	free(buff);
 	return (s);
@@ -61,7 +60,7 @@ char	*get_next_line(int fd)
 {
 	static char	*s;
 	char		*line;
-	int		i;
+	int			i;
 
 	i = 0;
 	if (fd < 0 || read(fd, 0, 0) < 0)
