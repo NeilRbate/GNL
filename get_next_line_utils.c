@@ -6,20 +6,21 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:21:05 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/17 18:31:26 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/18 08:48:33 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup(char *s1, int i)
 {
 	char	*ret;
 
-	ret = malloc(sizeof(char) * ft_strlen(s1) + 1);
+	ret = malloc(ft_strlen(s1 + i) + 1);
 	if (!ret)
 		return (0);
-	ft_strlcpy(ret, s1, ft_strlen(s1) + 1);
+	ft_strlcpy(ret, s1 + i, ft_strlen(s1 + i) + 1);
+	free(s1);
 	return (ret);
 }
 
