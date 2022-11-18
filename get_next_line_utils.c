@@ -6,13 +6,13 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:21:05 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/18 11:41:26 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/18 11:59:14 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strdup(char *s1, int i)
+char	*ft_gstrdup(char *s1, int i)
 {
 	char	*ret;
 
@@ -73,7 +73,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (ft_strlen(src));
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gstrjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;

@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:21:22 by jbarbate          #+#    #+#             */
-/*   Updated: 2022/11/18 11:54:46 by jbarbate         ###   ########.fr       */
+/*   Updated: 2022/11/18 12:01:37 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # endif
 
 int		ft_isnl(char *s);
+char	*ft_gstrjoin(char *s1, char *s2);
+char	*ft_gstrdup(char *s1, int i);
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(char *s1, int i);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 
